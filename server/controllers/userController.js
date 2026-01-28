@@ -1,4 +1,4 @@
-import { generateToken } from "../lib/utils.js";
+import { generatetoken } from "../lib/utils.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
@@ -23,7 +23,7 @@ export const signup = async (req, res) => {
         const newUser = await User.create({
             FullName, email, bio, password: hashedPassword
         })
-        const token = await generateToken(newUser._id);
+        const token = await generatetoken(newUser._id);
 
         // await newUser.save();
         res.json({
@@ -57,7 +57,7 @@ export const login = async(req, res) => {
         if(!isPasswordCorrect) {
             res.json({success: false, message: "Incorrect credentials"});
         }
-        const token = await generateToken(userData._id);
+        const token = await generatetoken(userData._id);
 
         res.json({
             success: true, userData, token, 
