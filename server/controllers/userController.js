@@ -89,7 +89,7 @@ export const updateProfile = async (req, res) => {
         if(!profilePic) { // if profilePic not updated
             updatedUser = await User.findOneAndUpdate(userId, {bio, FullName}, {new: true}); // new: true will give me the updated details
         } else {
-            // if pp updated then i will first have to upload it on cloudinary and get the url
+            // if pp updated then i will first have to upload it on cloudinary and get the url 
             const upload = await cloudinary.uploader.upload(profilePic);
 
             updatedUser = await User.findOneAndUpdate(userId, {profilePic: upload.secure_url, bio, FullName}, {new: true})
